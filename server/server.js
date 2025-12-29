@@ -10,11 +10,16 @@ dotenv.config();
 connectDB();
 
 const app = express();
-app.use(cors({
-    origin: 'https://event-listing-platform-three.vercel.app', 
+app.get("/", (req, res) => {
+  res.send("Server is running successfully!");
+});
+app.use(
+  cors({
+    origin: "https://event-listing-platform-three.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true
-}));
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
