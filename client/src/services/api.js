@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://event-listing-platform-8pim.vercel.app/api",
+  baseURL: "https://event-listing-platform-server.vercel.app/api",
 });
 
 api.interceptors.request.use((config) => {
