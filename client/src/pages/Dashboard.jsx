@@ -3,7 +3,8 @@ import api from "../services/api";
 
 const Dashboard = () => {
   const [events, setEvents] = useState([]);
-  const [name, setName] = useState("");
+  const [title, setTitle] = useState("");
+  const [category, setCategory] = useState("");
   const [location, setLocation] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -17,9 +18,9 @@ const Dashboard = () => {
   const createEvent = async (e) => {
     e.preventDefault();
     try {
-      const res = await api.post("/events", { name, location, date, time, description });
+      const res = await api.post("/events", { title,category, location, date, time, description });
       setEvents([...events, res.data]);
-      setName(""); setLocation(""); setDate(""); setTime(""); setDescription("");
+      setTitle("");setCategory(""); setLocation(""); setDate(""); setTime(""); setDescription("");
     } catch (err) {
       console.log(err.response?.data || err.message);
       alert(err.response?.data?.error || "Failed to create event");
@@ -30,7 +31,19 @@ const Dashboard = () => {
     <div className="max-w-md mx-auto mt-10">
       <h2 className="text-xl font-bold mb-4">Create Event</h2>
       <form onSubmit={createEvent}>
-        <input placeholder="Name" value={name} onChange={e=>setName(e.target.value)} className="border w-full p-2 mb-2"/>
+        <input placeholder="Event Title" value={title} onChange={e=>setName(e.target.value)} className="border w-full p-2 mb-2"/>
+       <select 
+          value={category} 
+          onChange={e=>setCategory(e.target.value)} 
+          className="border w-full p-2 mb-2"
+          required
+        >
+          <option value="">Select Category</option>
+          <option value="Tech">Tech</option>
+          <option value="Music">Music</option>
+          <option value="Sports">Sports</option>
+          <option value="Education">Education</option>
+        </select>
         <input placeholder="Location" value={location} onChange={e=>setLocation(e.target.value)} className="border w-full p-2 mb-2"/>
         <input type="date" value={date} onChange={e=>setDate(e.target.value)} className="border w-full p-2 mb-2"/>
         <input type="time" value={time} onChange={e=>setTime(e.target.value)} className="border w-full p-2 mb-2"/>
