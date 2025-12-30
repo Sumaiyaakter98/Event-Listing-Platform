@@ -15,9 +15,10 @@ app.get("/", (req, res) => {
 });
 app.use(
   cors({
-    origin: "https://event-listing-platform-8pim.vercel.app/",
+    origin: "https://event-listing-platform-8pim.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"]
   })
 );
 app.use(express.json());
