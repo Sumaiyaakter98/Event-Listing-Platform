@@ -20,7 +20,7 @@ const Dashboard = () => {
   const createEvent = async (e) => {
     e.preventDefault();
     try {
-      // ব্যাকএন্ডে title এবং category অবশ্যই পাঠাতে হবে
+      
       const res = await api.post("/events", { 
         title, 
         category, 
@@ -31,7 +31,7 @@ const Dashboard = () => {
       });
       
       setEvents([...events, res.data]);
-      // ফর্ম ক্লিয়ার করা
+      
       setTitle(""); setCategory(""); setLocation(""); setDate(""); setTime(""); setDescription("");
       alert("Event created successfully!");
     } catch (err) {
@@ -39,6 +39,14 @@ const Dashboard = () => {
       alert(err.response?.data?.message || "Failed to create event");
     }
   };
+  // Dashboard.jsx এ ডিলিট ফাংশন
+const deleteEvent = async (id) => {
+  if (window.confirm("Are you sure?")) {
+    await api.delete(`/events/${id}`);
+    setEvents(events.filter(ev => ev._id !== id));
+    alert("Deleted!");
+  }
+}
 
   return (
     <div className="max-w-md mx-auto mt-10 p-4">
@@ -104,9 +112,17 @@ const Dashboard = () => {
       <ul>
         {events.length > 0 ? (
           events.map((ev) => (
-            <li key={ev._id} className="border p-2 mb-2 rounded">
-              
-              <strong>{ev.title}</strong> - {ev.location} ({ev.date})
+            <li key={ev._id} className="border p-2 mb-2 rounded flex justify-between items-center shadow-sm">
+              <div>
+                <strong>{ev.title}</strong> - {ev.location} <br/>
+                <small>{ev.date}</small>
+              </div>
+              <button 
+                onClick={() => deleteEvent(ev._id)} 
+                className="bg-red-500 text-white px-2 py-1 rounded text-sm hover:bg-red-700"
+              >
+                Delete
+              </button>
             </li>
           ))
         ) : (
