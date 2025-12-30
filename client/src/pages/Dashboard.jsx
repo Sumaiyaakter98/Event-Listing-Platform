@@ -164,7 +164,7 @@ const Dashboard = () => {
               <div className="flex-1 min-w-[200px]">
                 <h3 className="font-bold text-xl text-gray-800">{ev.title}</h3>
                 <p className="text-blue-600 font-medium">{ev.category}</p>
-                <p className="text-sm text-gray-500 mt-1">📍 {ev.location} | 📅 {new Date(ev.date).toLocaleDateString()}</p>
+                <p className="text-sm text-gray-500 mt-1"> {ev.location} |  {new Date(ev.date).toLocaleDateString()}</p>
               </div>
               
               <div className="flex gap-3 mt-4 md:mt-0">
