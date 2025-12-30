@@ -47,17 +47,24 @@ export const getEventById = async (req, res) => {
   }
 };
 
-// UPDATE EVENT
+/// Update Event
 export const updateEvent = async (req, res) => {
+  const { id } = req.params; // ইউআরএল থেকে আইডি নেওয়া
   try {
-    const event = await Event.findById(req.params.id);
-    if (event.userId.toString() !== req.user.id)
-      return res.status(403).json({ message: "Not authorized" });
+    // ডাটাবেসে ইভেন্টটি খুঁজে আপডেট করা
+    const updatedEvent = await Event.findByIdAndUpdate(
+      id, 
+      req.body, 
+      { new: true, runValidators: true } // নতুন ডাটা রিটার্ন করবে এবং ভ্যালিডেশন চেক করবে
+    );
 
-    const updated = await Event.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.json(updated);
+    if (!updatedEvent) {
+      return res.status(404).json({ message: "Event not found" });
+    }
+
+    res.status(200).json(updatedEvent);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: "Failed to update event", error: error.message });
   }
 };
 
