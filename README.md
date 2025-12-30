@@ -1,7 +1,7 @@
 ## Event Listing Platform
 
 🔗 Live Website: https://event-listing-platform-three.vercel.app/ 
-🔗 Backend API: https://your-backend.vercel.app  
+🔗 Backend API: https://event-listing-platform-three.vercel.app/  
 
 ### Features
 - User Authentication
