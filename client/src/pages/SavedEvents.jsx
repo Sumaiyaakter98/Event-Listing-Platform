@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import api from "../services/api";
-import Event from "../models/Event.js";
+import EventCard from "../components/EventCard"
+
 
 const SavedEvents = () => {
   const [events, setEvents] = useState([]);
