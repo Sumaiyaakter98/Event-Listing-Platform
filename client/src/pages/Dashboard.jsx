@@ -31,7 +31,7 @@ const Dashboard = () => {
     <div className="max-w-md mx-auto mt-10">
       <h2 className="text-xl font-bold mb-4">Create Event</h2>
       <form onSubmit={createEvent}>
-        <input placeholder="Event Title" value={title} onChange={e=>setName(e.target.value)} className="border w-full p-2 mb-2"/>
+        <input placeholder="Event Title" value={title} onChange={e=>setTitle(e.target.value)} className="border w-full p-2 mb-2"/>
        <select 
           value={category} 
           onChange={e=>setCategory(e.target.value)} 
