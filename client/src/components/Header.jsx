@@ -146,14 +146,14 @@ const Header = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
                 </svg>
               </label>
-              <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-[#0a2642] rounded-box w-52 border border-[#7f66ff]">
+              <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[50] p-2 shadow bg-[#0a2642] rounded-box w-52 border border-[#7f66ff]">
                 {navLinks}
               </ul>
             </div>
           </div>
 
           {/* লোগো সেকশন */}
-          <div className="flex-1">
+          <div className="flex-1 navbar-start">
             <Link to="/" className="text-2xl font-bold tracking-wide">
               <span className="text-[#7f66ff]">CONF</span>PRO
             </Link>
