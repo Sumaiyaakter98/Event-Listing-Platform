@@ -140,7 +140,7 @@ const Header = () => {
           
           {/* মোবাইল ডিভাইসের জন্য হ্যামবার্গার মেনু (Left Side) */}
           <div className="navbar-end w-auto lg:hidden">
-            <div className="dropdown">
+            <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost p-0 mr-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
