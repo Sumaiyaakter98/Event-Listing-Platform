@@ -29,7 +29,7 @@ const EventDetails = () => {
       <div className="w-full relative bg-base-300">
         <img
           src={bannerImage}
-          className="w-full max-h-[800px] object-cover object-top mx-auto bg-black"
+          className="w-full max-h-[600px] object-cover object-top mx-auto bg-black"
           alt="Event Banner"
         />
         
