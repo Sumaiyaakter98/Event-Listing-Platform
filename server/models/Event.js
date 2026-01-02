@@ -6,6 +6,11 @@ const eventSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    image: {
+      type: String,
+      default: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=1000&auto=format&fit=crop",
+    },
+
     date: {
       type: String,
       required: true,

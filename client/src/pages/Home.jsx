@@ -28,8 +28,9 @@ const Home = () => {
   return (
     <div>
       {/* 🔷 Banner Section */}
-      <section className="bg-blue-600 text-white py-16">
-        <div className="container mx-auto text-center px-4">
+      <section className="bg-violet-300 bg-[url(https://preview.colorlib.com/theme/manup/img/hero.jpg)]   bg-center h-120  d-flex  justify-item-center  content-center  text-white py-16">
+      <div className="container mx-auto text-center px-4">
+        <div className=" d-flex  justify-item-center  content-center" >
           <h1 className="text-4xl font-bold mb-4">
             Discover Local Events Near You
           </h1>
@@ -41,17 +42,18 @@ const Home = () => {
             Browse Events
           </Link>
         </div>
+        </div>
       </section>
 
       {/* 🔷 Categories Section */}
       <section className="container mx-auto py-10 px-4">
-        <h2 className="text-2xl font-bold mb-6">Categories</h2>
+        <h2 className="text-2xl font-bold mb-6 text-[#0a2642]">Categories</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {["Music", "Sports", "Tech", "Education"].map((cat) => (
             <div
               key={cat}
-              onClick={() => handleCategoryClick(cat)} // ক্লিক ইভেন্ট যোগ করা হয়েছে
-              className="border rounded p-6 text-center cursor-pointer hover:bg-blue-600 hover:text-white hover:shadow-lg transition-all duration-300 font-semibold"
+              onClick={() => handleCategoryClick(cat)} 
+              className="border rounded p-6 text-center bg-violet-600 text-white cursor-pointer hover:bg-black hover:text-white hover:shadow-lg transition-all duration-300 font-semibold"
             >
               {cat}
             </div>
@@ -62,7 +64,7 @@ const Home = () => {
       {/* 🔷 Upcoming Events */}
       <section className="container mx-auto py-10 px-4">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">Upcoming Events</h2>
+          <h2 className="text-2xl font-bold text-[#0a2642]">Upcoming Events</h2>
           <Link to="/events" className="text-blue-600 hover:underline font-medium">
             View All
           </Link>
