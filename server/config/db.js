@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
-const dbURI = "mongodb+srv://sa9075971_db_user:root123@cluster0.v9uwzoo.mongodb.net/event_lisener_database?retryWrites=true&w=majority";
+// Ager URI string-er poriborte eta die change krun
+const dbURI = "mongodb+srv://sa9075971_db_user:root123@cluster0.v9uwzoo.mongodb.net/event_lisener_database?appName=Cluster0";
 
 // Connection reference globally dhore rakhar jonno jeno serverless route pool destroy na hoi
 let isConnected = false;
