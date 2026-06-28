@@ -1,30 +1,25 @@
 import mongoose from "mongoose";
 
-// Ager URI string-er poriborte eta die change krun
-const dbURI = "mongodb+srv://sa9075971_db_user:root123@cluster0.v9uwzoo.mongodb.net/event_lisener_database?appName=Cluster0";
+// Pure clean production database string without extra session configuration flags
+const dbURI = "mongodb+srv://sa9075971_db_user:root123@cluster0.v9uwzoo.mongodb.net/event_lisener_database";
 
-// Connection reference globally dhore rakhar jonno jeno serverless route pool destroy na hoi
 let isConnected = false;
 
 const connectDB = async () => {
-  mongoose.set("strictQuery", true);
-
   if (isConnected) {
-    console.log("=> Using existing database connection");
     return;
   }
 
   try {
     const db = await mongoose.connect(dbURI, {
-      serverSelectionTimeoutMS: 5000, // 5 second-e connect na hole jeno instant retry/fail hoi, buffering block chara
-      socketTimeoutMS: 45000,
+      serverSelectionTimeoutMS: 15000, // Wait up to 15 seconds for cloud authentication handshake
     });
-
+    
     isConnected = db.connections[0].readyState;
-    console.log("=> MongoDB Connected Successfully to Atlas!");
+    console.log("MongoDB Handshake Success!");
   } catch (error) {
     console.error("Database Connection Error:", error.message);
-    throw error; // Throw korle middleware error response instant return korte parbe
+    throw error;
   }
 };
 
