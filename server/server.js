@@ -7,46 +7,36 @@ import eventRoutes from "./routes/eventRoutes.js";
 import userRoutes from "./routes/userRouth.js";
 
 dotenv.config();
+
+// Connect to Database
 connectDB();
 
 const app = express();
+
+// 1. CORS Configuration (Routes and JSON middleware-er shobcheye upore thakte hobe)
+app.use(cors({
+  origin: ["https://event-listing-platform-8pim.vercel.app", "http://localhost:5173"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], 
+  credentials: true,
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
+// Simple fallback structure handle korar jonno (optional kintu clean)
+// app.options("*", cors()); 
+
+// 2. Body Parser Middleware
+app.use(express.json());
+
+// 3. Home Route
 app.get("/", (req, res) => {
   res.send("Server is running successfully!");
 });
 
-const allowedOrigins = [
-  "https://event-listing-platform-8pim.vercel.app", 
-  "http://localhost:5173", 
-];
-
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      // allow requests with no origin (like mobile apps or curl requests)
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-    allowedHeaders: ["Content-Type", "Authorization"]
-  })
-);
-// app.use(
-//   cors({
-//     origin: "http://localhost:5173", //"https://event-listing-platform-8pim.vercel.app",
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     credentials: true,
-//     allowedHeaders: ["Content-Type", "Authorization"],
-//   })
-// );
-app.use(express.json());
-
+// 4. API Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/events", eventRoutes);
 app.use("/api/users", userRoutes);
 
-app.listen(5000, () => console.log("Server running"));
+// For Local Testing
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
