@@ -23,8 +23,15 @@ app.use(express.json());
 
 // 🔥 NEW: Vercel Serverless Database Connection Middleware
 app.use(async (req, res, next) => {
-  await connectDB();
-  next();
+  try {
+    await connectDB();
+    next();
+  } catch (error) {
+    res.status(500).json({ 
+      message: "Database connection failed! Please check Atlas network or retry.", 
+      error: error.message 
+    });
+  }
 });
 
 // Home Route
