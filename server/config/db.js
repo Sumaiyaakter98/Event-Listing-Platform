@@ -2,14 +2,16 @@ import mongoose from "mongoose";
 
 const connectDB = async () => {
   try {
-    // Sora-sori connect string bypass path (connditional structure bad)
+    // try removing the extra options at the end if it timeouts
     const dbURI = "mongodb+srv://sa9075971_db_user:root123@cluster0.v9uwzoo.mongodb.net/event_lisener_database?retryWrites=true&w=majority";
 
-    await mongoose.connect(dbURI);
+    // bufferCommands false korle timeout crash message shorashori dhura porbe
+    await mongoose.connect(dbURI, {
+      bufferCommands: false 
+    });
     console.log("MongoDB Connected Successfully to Atlas!");
   } catch (error) {
     console.error("Database Connection Error:", error.message);
-    // Vercel serverless process exit bad diye handler return kora safe
     return false;
   }
 };
